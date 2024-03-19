@@ -166,13 +166,12 @@ public with sharing class FlowControlLoopsCollections {
      * @return The sum of all integers up to the limit.
      */
     public static Integer sumUpToLimit(Integer intLimit) {
-        Integer sumTotal = null;
-        for (Integer i = 0 ; i > intLimit ; i++){
-            sumTotal = i + sumTotal;
-            System.debug(sumTotal);
+        Integer sumTotal = 0;
+        for (Integer i = 0 ; i < intLimit ; i++){
+            sumTotal = (i + 1) + sumTotal;
          }
-        return sumTotal;
-    }
+        return sumTotal;    
+    } 
 
     /**
      * Question 9
@@ -325,7 +324,7 @@ public with sharing class FlowControlLoopsCollections {
      * Example: countMoney() should return 48.02
      * @return The total value in dollars, stopped at the point when it exceeds 40 dollars.
      */
-    //DID NOT YET TEST
+    
      public static Decimal countMoney() {
         // The list of money in the wallet, represented in dollars and cents
         Decimal currentTotal = 0;
@@ -343,19 +342,25 @@ public with sharing class FlowControlLoopsCollections {
      * Question 18
      * Create a map that has five key-value pairs to the map, where the keys are the names of fruits and the values are their quantities.
      * Example: addItemsToMap() should return "Apples => 5, Oranges => 10, Bananas => 15, Pears => 20, Grapes => 25"
-     * @return The Map of fruits and their quantities.
+     * @return The Map of fruits and their quantities.*/
      
     public static Map<String, Integer> addItemsToMap() {
         // Initialize an empty Map
-
+        Map<String, Integer> fruitTotals = new Map<String, Integer>();
         // Add key-value pairs to the Map
+        fruitTotals.put('Apples', 5);
+        fruitTotals.put('Oranges', 10);
+        fruitTotals.put('Bananas', 15);
+        fruitTotals.put('Pears', 20);
+        fruitTotals.put('Grapes', 25);
+
         // add Apples => 5
         // add Oranges => 10
         // add Bananas => 15
         // add Pears => 20
         // add Grapes => 25
 
-        return null; // Replace null with the variable you used to store the result
+        return fruitTotals; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -365,22 +370,19 @@ public with sharing class FlowControlLoopsCollections {
      * Example: getSalary("John Doe") should return 50000
      * Resource: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_map.htm#apex_System_Map_get
      * @param employeeName The name of the employee.
-     * @return The salary of the employee, or null if the employee is not found in the Map.
+     * @return The salary of the employee, or null if the employee is not found in the Map.*/
      
     public static Integer getSalary(String employeeName) {
         // Initialize a Map
-
-        // Add key-value pairs to the Map
-        // add John Doe => 50000
-        // add Jane Smith => 60000
-        // add Sam Brown => 55000
-        // add Alice Johnson => 65000
-
-        // Get the salary of the employee
-
-        // Return the salary of the employee, or null if the employee is not found in the Map
-        return null; // Replace null with the variable you used to store the result
-    }
+        Map<String, Integer> employeeSalary = new Map<String, Integer>();
+        employeeSalary.put('John Doe', 50000);
+        employeeSalary.put('Jane Smith', 60000);
+        employeeSalary.put('Sam Brown', 55000);
+        employeeSalary.put('Alice Johnson', 65000);
+        Integer foundSalary = employeeSalary.get(employeeName);
+        return foundSalary;
+        }
+    
 
     /**
      * Question 20
@@ -389,28 +391,28 @@ public with sharing class FlowControlLoopsCollections {
      * If it is, add the employee's name to a list of employees that is returned by the method.
      * Remember that a Map is a collection of key-value pairs. Key are a set of unique values, so you can't have duplicate keys. Values are a list of values, so you can have duplicate values.
      * Resource: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm
-     * Example: getHighPaidEmployees() should return ['Jane Smith', 'Alice Johnson']
+     * Example: getHighPaidEmployees() should return ['Jane Smith', 'Alice Johnson'].
      * @return A list of employee names who have a salary more than 55000.
      */
+   
     public static List<String> getHighPaidEmployees() {
         // Initialize a Map
         Map<String, Integer> employeeSalaries = new Map<String, Integer>();
-
-        // Add key-value pairs to the Map
-        // add John Doe => 50000
-        // add Jane Smith => 60000
-        // add Sam Brown => 55000
-        // add Alice Johnson => 65000
-
+        employeeSalaries.put('John Doe', 50000);
+        employeeSalaries.put('Jane Smith', 60000);
+        employeeSalaries.put('Sam Brown', 55000);
+        employeeSalaries.put('Alice Johnson', 65000);
         // Initialize a list to store the names of high paid employees
-
+        Integer individualSalary = null;
+        List<String> highPaidEmployees= new List<String>();
         // Iterate over the Map using a for loop
-            // Check if the salary of the employee is more than 55000
-                // Add the employee to the list of high paid employees
-
+        for(String employee : employeeSalaries.keySet()){
+            individualSalary = employeeSalaries.get(employee);
+            if (individualSalary > 55000){
+                highPaidEmployees.add(employee);
+            }
+        }
         // Return the list of high paid employees
-        return null; // Replace null with the variable you used to store the result
-    
-    
+        return highPaidEmployees;
+     } // Replace null with the variable you used to store the result.
     }
-}
